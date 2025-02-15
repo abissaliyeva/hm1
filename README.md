@@ -1,32 +1,34 @@
 SOLID-Refactored Adventure Game 
-Introduction 
-This document provides an in-depth explanation of the refactored adventure game, highlighting the application of SOLID principles. The game involves a player encountering different enemies, engaging in combat, gaining experience, and progressing through levels while maintaining a structured and maintainable codebase.
-	
+
 SOLID Principles Applied
 1. Single Responsibility Principle (SRP)
 Each class has a single, well-defined responsibility:
+
 •	Player manages health, experience, and inventory.
-•	public class Player implements IDamageable {
+	public class Player implements IDamageable {
     private String name;
     private int health;
     private int experience;
     private List<ItemManager> inventory;
+
 •	CombatManager handles combat logic.
-•	public class CombatManager {
+	public class CombatManager {
     private ScoreManager scoreManager;
+    
 •	Enemy spawns and manages enemies.
-•	public class Enemy implements IEnemy  {
+	public class Enemy implements IEnemy  {
     private String type;
     private int points;
     private int health;
     private int attackPower;
+    
 •	LevelManager handles level progression.
-•	public class LevelManager {
+	public class LevelManager {
     private int currentLevel;
     private Random random;
+    
 •	ScoreManager tracks the player’s score.
-•	public class ScoreManager {
-
+	public class ScoreManager {
     public int score;
 
 2. Open/Closed Principle (OCP)
@@ -183,24 +185,3 @@ o	addScore(int points): Increments score.
 o	getScore(): Retrieves current score.
 
  
-
-
-Game Flow
-1.	Game Starts
-o	MainGame initializes Player, CombatManager, LevelManager, and ScoreManager.
-2.	Enemy Encounter
-o	LevelManager spawns an enemy.
-o	CombatManager handles combat.
-3.	Combat Execution
-o	Player and enemy exchange attacks.
-o	If the enemy is defeated, experience and points are awarded.
-o	If the player is defeated, the game ends.
-4.	Level Progression
-o	If the player survives, LevelManager advances the game to the next level.
-o	A new enemy is spawned, and the loop continues.
-5.	Game Over
-o	When the player’s health reaches zero, the final score is displayed.
-
-Conclusion
-This refactored adventure game follows SOLID principles, improving maintainability, scalability, and code organization. The separation of concerns allows easy modifications and extensions, ensuring long-term flexibility.
-
